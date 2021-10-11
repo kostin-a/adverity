@@ -16,7 +16,8 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+//	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 //	implementation("org.springframework.boot:spring-boot-starter-web")
 
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
@@ -33,7 +34,7 @@ dependencies {
 
 	implementation("org.springdoc:springdoc-openapi-webflux-ui:1.5.2")
 
-	runtimeOnly("com.h2database:h2")
+	implementation("org.postgresql:postgresql:42.2.12")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

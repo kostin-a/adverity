@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<!--    <springProfile name="dev,qa,test,prod">-->
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{_login}:%X{rayId}][%X{_req}] %logger{36} - %m%n</pattern>
+            </encoder>
+        </appender>
+<!--    </springProfile>-->
+
+
+
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+        <springProfile name="qa,prod">
+            <appender-ref ref="FILE" />
+        </springProfile>
+    </root>
+    <logger name="edu.almasoft" level="debug" />
+    <logger name="org.hibernate.SQL" level="debug" />
+</configuration>
+

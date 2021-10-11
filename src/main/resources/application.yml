@@ -1,0 +1,34 @@
+spring:
+
+  datasource:
+    hikari:
+      maximum-pool-size: 20
+      connection-timeout: 60000
+    url: jdbc:postgresql://localhost:5456/postgres
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      javax:
+        persistence:
+          validation:
+            mode: none
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        show_sql: true
+
+
+
+
+
+adverity:
+  datainit:
+    path: classpath:/adverity.csv
+
+
+
+springdoc:
+  swagger-ui:
+    path=/swagger

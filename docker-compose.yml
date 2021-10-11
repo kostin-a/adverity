@@ -1,0 +1,32 @@
+version: "3.4"
+
+x-common-variables: &common-variables
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: password
+  PGDATA: /var/lib/postgresql/data/pgdata
+services:
+
+  db:
+    image: postgres:11.2
+    shm_size: "1gb"
+    ports:
+      - 5456:5432
+    volumes:
+      - ./db/pgdata:/var/lib/postgresql/data/pgdata
+      - ./db/utils:/var/pg_bkp_data
+    environment: *common-variables
+
+  adverity:
+    build: .
+    container_name: adverity
+    restart: always
+    ports:
+      - 8083:8080
+    volumes:
+      - ./logs:/opt/adverity/logs
+      - ./build/libs:/opt/adverity/jar
+    environment:
+      - AR_PROFILES=qa
+      - AR_JAVA_OPTS=
+      - AR_RUN_OPTS=
+

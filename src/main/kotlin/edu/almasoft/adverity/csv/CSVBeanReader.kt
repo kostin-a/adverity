@@ -1,10 +1,10 @@
-package edu.almasoft.adverity
+package edu.almasoft.adverity.csv
 
 import com.opencsv.CSVParserBuilder
 import com.opencsv.CSVReaderBuilder
 import org.springframework.beans.BeanWrapper
 import org.springframework.beans.BeanWrapperImpl
-import org.springframework.expression.spel.standard.SpelExpressionParser
+import org.springframework.stereotype.Component
 import java.beans.PropertyEditorSupport
 import java.io.File
 import java.nio.charset.Charset
@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter
 import kotlin.reflect.KClass
 import kotlin.reflect.full.createInstance
 
-
+@Component
 class CSVBeanReader {
 
     private class LocalDateFormatter: PropertyEditorSupport() {
@@ -74,64 +74,17 @@ class CSVBeanReader {
     }
 }
 
-/**
- * This is a root object for Spring EL parser. This class can be extended to add custom functions
- * for example: avg(), substring() etc. Currently only bare minimum is implemented
- * @param vector is the collection for which custom functions are calculated
- */
-class EvaluationContext (val vector: List<Any?>) {
-    /**
-     * calculates sum of all not-null objects for collection @param vector by field @param filed.
-     * Function expects field to be resolved as Int (in future can be extended for Number)
-     */
-    fun sum(field: String): Int {
-        return vector
-            .filterNotNull()
-            .mapNotNull { BeanWrapperImpl(it).getPropertyValue(field) as Int? }
-            .sum()
-    }
-}
-fun main() {
-    var slice = CSVBeanReader().readCsv(
-        File("src/main/resources/adverity.csv"),
-        ClickRow::class,
-        mapOf("datasource" to 0, "daily" to 2, "campaign" to 1, "clicks" to 3, "impressions" to 4),
-        skipLines = 1
-    )
-
-
-
-    val r = Request(groups = listOf("datasource", "campaign"), fields = listOf("sum('clicks')", "1.0*sum('clicks') / sum('impressions')"))
-
-    // we consider list of object as timeseries so first
-    // cut not necessary parts of data by date
-    if (r.from != null || r.to != null) {
-        slice = slice.filter {
-            r.from?.isBefore(it.daily) ?: true &&
-            r.to?.isAfter(it.daily) ?: true
-        }
-    }
-    val parser = SpelExpressionParser()
-
-    if (r.filters.isNotEmpty()) {
-        slice.filter { row ->
-            r.filters.all { filter ->
-               !(parser.parseExpression(filter).getValue(row) as Boolean)
-            }
-        }
-    }
-
-    val group : Map<List<Any?>, List<Any?>> = slice.groupBy { o -> r.groups.map { parser.parseExpression(it).getValue(o) } }
-    val retVal = group.map { (groupKey, groupValue) ->
-        Response(groupKey,
-            r.fields.map { field ->
-                parser.parseExpression(field).getValue(EvaluationContext(vector=groupValue))
-            }
-        )
-    }
-
-    println(retVal)
-//    println(parser.parseExpression("count('clicks')").getValue(context))
-
-//    print(f.size)
-}
+//fun main() {
+//    var slice = CSVBeanReader().readCsv(
+//        File("src/main/resources/adverity.csv"),
+//        ClickRow::class,
+//        mapOf("datasource" to 0, "campaign" to 1, "daily" to 2, "clicks" to 3, "impressions" to 4),
+//        skipLines = 1
+//    )
+//
+//
+//
+//    val r = Request(groups = listOf("datasource", "campaign"), fields = listOf("sum('clicks')", "1.0*sum('clicks') / sum('impressions')"))
+//
+//
+//}
