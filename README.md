@@ -3,7 +3,8 @@
 Here it is Kotlin/SpringBoot solution for given assigment. Main idea is to use SpringEL as a parser for expression and calculate group-by, 
 filter, and fields values dinamically by SpringEL framework.
 ## Usage and main syntax
-Central object of the model is:
+
+Central model class is `ClickRow` which is the abstaction for the row in data csv:
 
 ```kotlin
 data class ClickRow (
@@ -17,8 +18,7 @@ data class ClickRow (
     var impressions: Int
 )
 ```
-
-Each request has the form:
+To access the data one needs to use `/clicks` endpoint. This is the REST endpoint and has the following format:
 
 `http://localhost:8080/clicks/groups/GROUPS/fields/FIELDS[/filters/FILTERS]?from=FROM_DATE&to=TO_DATE`
 where:
