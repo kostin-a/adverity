@@ -4,6 +4,7 @@ import edu.almasoft.adverity.model.Request
 import edu.almasoft.adverity.model.Response
 import edu.almasoft.adverity.service.ClickDataService
 import org.slf4j.LoggerFactory
+import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import java.time.LocalDate
@@ -20,8 +21,8 @@ class ClicksController(val clickDataService: ClickDataService) {
     fun getClicks(
         @PathVariable("groups") groups: String,
         @PathVariable("fields") fields: String,
-        @RequestParam("from") from: LocalDate?,
-        @RequestParam("to") to: LocalDate?,
+        @RequestParam("from") @DateTimeFormat(pattern = "yyyy-MM-dd") from: LocalDate?,
+        @RequestParam("to") @DateTimeFormat(pattern = "yyyy-MM-dd") to: LocalDate?,
         @PathVariable("filter", required = false) filter: String?
     ): Flux<Response> {
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yy")

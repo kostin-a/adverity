@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <springProfile name="dev,qa,test,prod">
+    <springProfile name="dev,qa,test,prod,default">
         <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
             <encoder>
                 <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %m%n</pattern>
@@ -31,6 +31,5 @@
     </root>
     <logger name="edu.almasoft" level="debug" />
     <logger name="org.hibernate.SQL" level="debug" />
-    <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug" />
 </configuration>
 

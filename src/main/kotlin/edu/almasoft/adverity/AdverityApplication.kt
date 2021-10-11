@@ -5,8 +5,10 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer
 import org.springframework.boot.runApplication
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
+import org.springframework.web.filter.CommonsRequestLoggingFilter
 import org.springframework.web.reactive.config.EnableWebFlux
 import java.time.format.DateTimeFormatter
 
