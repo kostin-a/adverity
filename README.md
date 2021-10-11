@@ -26,7 +26,7 @@ where:
 * `FIELDS` -- is a comma separated list of expressions that will be calculated on top of the groups: 
 * * `sum('field_name')` -- for a given group calculates sum for the field, 
 * * `f('field_name')` -- for a given group it takes first element in the group and field value of this object
-* `/filters/FILTERS` -- optional section of comma separated expressions that will be calculated for each `ClickRow` object. For example, `clicks < 100`
+* `/filters/FILTERS` -- optional section of comma separated list of expressions that will be calculated for each `ClickRow` object. For example, `clicks < 100`
 * `FROM_DATE`, `TO_DATE` -- optionals parameters date start date end (inclusive)
 
 
