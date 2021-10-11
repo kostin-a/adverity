@@ -31,5 +31,6 @@
     </root>
     <logger name="edu.almasoft" level="debug" />
     <logger name="org.hibernate.SQL" level="debug" />
+    <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug" />
 </configuration>
 
