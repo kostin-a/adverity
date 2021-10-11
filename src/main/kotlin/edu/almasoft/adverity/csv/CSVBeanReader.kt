@@ -75,18 +75,3 @@ class CSVBeanReader {
         return wrapper.wrappedInstance as T
     }
 }
-
-//fun main() {
-//    var slice = CSVBeanReader().readCsv(
-//        File("src/main/resources/adverity.csv"),
-//        ClickRow::class,
-//        mapOf("datasource" to 0, "campaign" to 1, "daily" to 2, "clicks" to 3, "impressions" to 4),
-//        skipLines = 1
-//    )
-//
-//
-//
-//    val r = Request(groups = listOf("datasource", "campaign"), fields = listOf("sum('clicks')", "1.0*sum('clicks') / sum('impressions')"))
-//
-//
-//}
