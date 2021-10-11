@@ -1,6 +1,6 @@
 # Adverity assignment solution
 
-Here it is Kotlin/SpringBoot solution for given assigment. Main idea is to use SpringEL as a parser for expression and calculate group-by, 
+Here it is Kotlin/SpringBoot solution for given assignment. Main idea is to use SpringEL as a parser for expression and calculate group-by, 
 filter, and fields values dinamically by SpringEL framework.
 ## Usage and main syntax
 
