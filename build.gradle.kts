@@ -45,7 +45,16 @@ tasks.withType<KotlinCompile> {
 		jvmTarget = "11"
 	}
 }
-
+//test {
+//	testLogging {
+//		events "failed"
+//		exceptionFormat "full"
+//	}
+//}
 tasks.withType<Test> {
+	testLogging {
+		events = setOf(org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED)
+		exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+	}
 	useJUnitPlatform()
 }
