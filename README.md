@@ -20,13 +20,15 @@ data class ClickRow (
 
 Each request has the form:
 
-`http://localhost:8080/clicks/groups/GROUPS/fields/FIELDS?from=FROM_DATE&to=TO_DATE`
+`http://localhost:8080/clicks/groups/GROUPS/fields/FIELDS[/filters/FILTERS]?from=FROM_DATE&to=TO_DATE`
 where:
 * `GROUPS` -- is a comma separated of fields to group for `ClickRow` objects. For example, `datasource,campaign`
 * `FIELDS` -- is a comma separated of expressions that will be calculated on top of the groups: 
 * * `sum('field_name')` -- for a given group calculates sum for the field, 
 * * `f('field_name')` -- for a given group it takes first element in the group and field value of this object
+* /filters/FILTERS -- optional section of comma separated expressions that will be calculated for each `ClickRow` object. For example, `clicks < 100`
 * `FROM_DATE`, `TO_DATE` -- optionals parameters date start date end (inclusive)
+
 
 ## Example queries
 * Clicks per `datasource` for a given range
