@@ -50,7 +50,7 @@ class ClickDataService (val clickRowRepository: ClickRowRepository,
             ?: throw IllegalStateException("Please specify path to load CSV data: 'adverity.datainit.path'"))
 
         val data = cSVBeanReader.readCsv(
-            csv.file,
+            csv,
             ClickRow::class,
             mapOf("datasource" to 0, "campaign" to 1, "daily" to 2, "clicks" to 3, "impressions" to 4),
             skipLines = 1)

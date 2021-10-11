@@ -4,6 +4,7 @@ import com.opencsv.CSVParserBuilder
 import com.opencsv.CSVReaderBuilder
 import org.springframework.beans.BeanWrapper
 import org.springframework.beans.BeanWrapperImpl
+import org.springframework.core.io.Resource
 import org.springframework.stereotype.Component
 import java.beans.PropertyEditorSupport
 import java.io.File
@@ -27,18 +28,19 @@ class CSVBeanReader {
         }
     }
 
-    fun <T: Any> readCsv(file: File,
-                         target: KClass<T>,
-                         mapping: Map<String, Int>,
-                         separator: Char = ',',
-                         skipLines: Int = 0): List<T> {
+    fun <T: Any> readCsv(
+        file: Resource,
+        target: KClass<T>,
+        mapping: Map<String, Int>,
+        separator: Char = ',',
+        skipLines: Int = 0): List<T> {
         val retVal = mutableListOf<T>()
 
         val parser = CSVParserBuilder()
             .withSeparator(separator)
             .build()
 
-        file.reader(Charset.forName("utf-8")).use { ios ->
+        file.inputStream.reader(Charset.forName("utf-8")).use { ios ->
             val reader = CSVReaderBuilder(ios)
                 .withSkipLines(skipLines)
                 .withCSVParser(parser)
