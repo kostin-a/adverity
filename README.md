@@ -2,6 +2,31 @@
 
 Here it is Kotlin/SpringBoot solution for given assigment. Main idea is to use SpringEL as a parser for expression and calculate group-by, 
 filter, and fields values dinamically by SpringEL framework.
+## Usage and main syntax
+Central object of the model is:
+
+```kotlin
+data class ClickRow (
+
+    var id: Long?,
+    var datasource: String,
+    var campaign: String,
+
+    var daily: LocalDate,
+    var clicks: Int,
+    var impressions: Int
+)
+```
+
+Each request has the form:
+
+`http://localhost:8080/clicks/groups/GROUPS/fields/FIELDS?from=FROM_DATE&to=TO_DATE`
+where:
+* `GROUPS` -- is a comma separated of fields to group for `ClickRow` objects. For example, `datasource,campaign`
+* `FIELDS` -- is a comma separated of expressions that will be calculated on top of the groups: 
+* * `sum('field_name')` -- calculates sum for the field, 
+* * `f('field_name')` -- takes first element in the group and field value of this object
+* `FROM_DATE`, `TO_DATE` -- optionals parameters date start date end (inclusive)
 
 ## Example queries
 * Clicks per `datasource` for a given range
