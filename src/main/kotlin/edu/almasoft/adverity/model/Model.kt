@@ -6,7 +6,6 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 
-//@Table("click_row")
 @Entity
 data class ClickRow (
     @Id @GeneratedValue
@@ -17,7 +16,6 @@ data class ClickRow (
     var daily: LocalDate? = null,
     var clicks: Int? = null,
     var impressions: Int? = null
-
 )
 
 data class Request (
@@ -29,6 +27,8 @@ data class Request (
 )
 
 data class Response (
+    @JsonFormat(pattern="MM/dd/yy")
     val key: List<Any?>,
+    @JsonFormat(pattern="MM/dd/yy")
     val fields: List<Any?>
 )
