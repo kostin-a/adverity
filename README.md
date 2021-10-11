@@ -36,7 +36,7 @@ where:
 * CTR per `datasource` and `campaign` for a given range
 https://buffer-qa.alpharank-test.io/adverity/clicks/groups/datasource,campaign/fields/1.0*sum('clicks')%2Fsum('impressions')?from=2019-10-10&to=2019-11-10
 * `Impressions` over time daily 
-https://buffer-qa.alpharank-test.io/adverity/clicks/groups/daily/fields/sum('impressions')?from=10/10/2019&to=11/10/2019
+https://buffer-qa.alpharank-test.io/adverity/clicks/groups/daily/fields/sum('impressions')?from=2019-10-10&to=2019-11-10
 ## Assumptions
 * for non-grouping queries, please use Identity group: `id`. For production code, we need to add special handling of non-grouping queries
 * when field A requested that not presented in group clause, we return first element. In future, to avoid misleadings, we need to return error or warning in this case
