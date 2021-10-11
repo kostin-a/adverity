@@ -24,8 +24,8 @@ Each request has the form:
 where:
 * `GROUPS` -- is a comma separated of fields to group for `ClickRow` objects. For example, `datasource,campaign`
 * `FIELDS` -- is a comma separated of expressions that will be calculated on top of the groups: 
-* * `sum('field_name')` -- calculates sum for the field, 
-* * `f('field_name')` -- takes first element in the group and field value of this object
+* * `sum('field_name')` -- for a given group calculates sum for the field, 
+* * `f('field_name')` -- for a given group it takes first element in the group and field value of this object
 * `FROM_DATE`, `TO_DATE` -- optionals parameters date start date end (inclusive)
 
 ## Example queries
