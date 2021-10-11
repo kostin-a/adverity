@@ -10,4 +10,6 @@ filter, and fields values dinamically by SpringEL framework.
 http://localhost:8080/clicks/groups/datasource,campaign/fields/1.0*sum('clicks')%2Fsum('impressions')?from=10/10/2019&to=11/10/2019
 * `Impressions` over time daily 
 http://localhost:8080/clicks/groups/daily/fields/sum('impressions')?from=10/10/2019&to=11/10/2019
-## Assumptions* 
+## Assumptions
+* for non-grouping queries, please use Identity group: `id`. For production code, we need to add special handling of non-grouping queries
+* when field A requested that not presented in group clause, we return first element. In future, to avoid misleadings, we need to return error or warning in this case
