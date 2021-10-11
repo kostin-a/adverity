@@ -54,8 +54,7 @@ class CalculationsTests {
 
 		val r = Request(
 			groups = listOf("datasource"),
-//			fields = listOf("div(sum('clicks'), sum('impressions'))"),
-			fields = listOf("sum('clicks'):sum('impressions')"),
+			fields = listOf("div(sum('clicks'), sum('impressions'))"),
 		)
 		val g = ep.evaluate(slice, r)
 		assertEquals(2, g.size)
